@@ -8,7 +8,7 @@ wss.on('connection', (ws) => {
 
   ws.on('message', (message) => {
     console.log(' Message received from one client. Broadcasting...');
-    // Broadcast to all other clients
+    
     wss.clients.forEach((client) => {
       if (client !== ws && client.readyState === WebSocket.OPEN) {
         client.send(message);

@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const testUrl = "https://cnn.com";
 const TIMEOUT_MS = 4000;
 
-// Main entry: only Internet Archive, for now
+
 const timemapIndexUrl = `http://timetravel.mementoweb.org/timemap/json/${testUrl}`;
 
 async function fetchWithTimeout(url, name) {
@@ -64,7 +64,7 @@ async function runAggregator() {
     }
   }
 
-  console.log("\n📦 FINAL RESULT (first 5 mementos):");
+  console.log("\n FINAL RESULT (first 5 mementos):");
   console.dir(allMementos.slice(0, 5), { depth: null });
 
   // Optional: save to file (uncomment if needed)
