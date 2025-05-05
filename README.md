@@ -1,12 +1,18 @@
-# mink-aggregator-prototype
+# Mink Aggregator Prototype (Client-side)
+This project is a prototype extension of the Mink Chrome extension. It adds client-side Memento aggregator functionality, allowing clients to:
 
+Query multiple web archives for mementos of a URL,
+
+Share results in real time via WebSocket communication, and
+
+Interact with results through a simple web-based UI.
 
 This repository contains a research prototype that fulfills two key goals as outlined by the supervising professor:
 
 1. Client-side aggregator functionality (MemGator-inspired)  
 2. Mink-to-Mink communication via WebSockets
 
-The implementation is designed in Node.js to first explore and demonstrate core functionality before adapting it into the browser-based Mink Chrome extension.
+The implementation is designed in Node.js to explore and demonstrate core functionality before adapting it into the browser-based Mink Chrome extension.
 
 
 
@@ -19,27 +25,18 @@ The implementation is designed in Node.js to first explore and demonstrate core 
 
 ---
 
-# Project Structure
 
-The prototype consists of a few key files, each serving a specific role in fulfilling the research objectives. 
-The aggregator-client.js script is the primary client-side component that performs multiple tasks: it queries various Memento-compliant web archives for TimeMaps, parses the link-format responses to extract memento data (such as URI, datetime, and archive source), and broadcasts the aggregated results to other clients using WebSockets.
-The server.js file establishes a WebSocket server that acts as a relay  it accepts connections from multiple clients and ensures that memento data shared by one client is broadcast to all others in real time. 
-The package.json file contains the project's configuration, including dependencies like node-fetch for making HTTP requests and ws for WebSocket communication. 
-Additionally, the script can optionally save the retrieved memento data into a file named results.json, which serves as a local snapshot of the aggregated results during a single run.
 ---
 
-# Goal 1: Client-Side Aggregator
-
 # Features
-- Fetches TimeMaps from **multiple Memento-compliant archives**
-- Handles **timeouts** 
-- Parses **link-format TimeMaps**
-- Extracts and normalizes:
-  - Archived URI (`uri`)
-  - Capture datetime (`datetime`)
-  - Source archive (`source`)
-- Logs and optionally saves results as JSON
+ Query TimeMap endpoints from multiple web archives for any given URL.
 
+ Uses WebSocket for real-time sharing of memento data between clients.
+
+ Provides a clean, browser-based UI to show incoming mementos live.
+
+ Lays the foundation for client-to-client communication in Mink.
+ 
 # Archives Queried
 - Internet Archive
 - Archive-It
@@ -77,8 +74,34 @@ git clone https://github.com/V-Security-beep/mink-aggregator-prototype.git
 cd mink-aggregator-prototype
 npm install
 
+### Install Dependencies
+npm install ws node-fetch
+
 ### Start WebSocket Server
 node server.js
+Runs a WebSocket server on ws://localhost:8081.
+
+### Serve the Web UI
+node serve-ui.js
+http://localhost:3000
 
 ### In Two Separate Terminals, Run Clients
 node aggregator-client.js
+This will query TimeMap endpoints for the target URL and broadcast results via WebSocket.
+
+You can change the target URL by modifying the value of targetUrl inside aggregator-client.js.
+
+###What the UI Shows
+Displays a list of archived mementos as they arrive in real time.
+
+Allows testing the full pipeline from client-side fetch → WebSocket broadcast, → frontend rendering.
+
+### Video Walkthrough
+Coming soon! A short demo video will explain:
+
+How the backend works.
+
+What the aggregator script does.
+
+How the UI receives and displays mementos.
+
