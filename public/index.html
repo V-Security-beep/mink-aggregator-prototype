@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mink Live Memento Viewer</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .controls select,
+    .controls input,
+    .controls button {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .memento {
+      background-color: white;
+      border-left: 5px solid #007acc;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .datetime {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 0.3rem;
+    }
+
+    .source {
+      font-size: 0.9rem;
+      color: gray;
+    }
+
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mink Live Memento Viewer</h1>
+
+  <div class="controls">
+    <select id="sourceFilter">
+      <option value="all">All Sources</option>
+    </select>
+    <input type="date" id="startDate" />
+    <input type="date" id="endDate" />
+    <button onclick="downloadMementos()"> Download JSON</button>
+    <button onclick="toggleLive()" id="toggleBtn">⏸ Pause</button>
+  </div>
+
+  <div id="mementos"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
