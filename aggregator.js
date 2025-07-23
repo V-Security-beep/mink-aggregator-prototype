@@ -3,7 +3,7 @@ const testUrl = "https://cnn.com";
 const TIMEOUT_MS = 4000;
 
 
-const timemapIndexUrl = `http://timetravel.mementoweb.org/timemap/json/${testUrl}`;
+const timemapIndexUrl = `http://web.archive.org/web/timemap/json/${testUrl}`;
 
 async function fetchWithTimeout(url, name) {
   const controller = new AbortController();
